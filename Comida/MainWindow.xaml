@@ -5,8 +5,140 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Comida"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="500" Height="700" MinWidth="600" Width="950" Background="LightSkyBlue">
+        Title="Comida" MinHeight="500" Height="700" MinWidth="600" Width="950" Background="LightSkyBlue">
+
+    <Window.Resources>
+
+
+        <Style TargetType="TextBlock" x:Key="xFontFamily">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="Margin"   Value="15"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding Path=Nombre}" Value="Dumplings">
+                    <Setter Property="Margin"   Value="8"/>
+                    <Setter Property="FontSize" Value="30"/>
+                    <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="Margin"   Value="5"/>
+                    <Setter Property="FontSize" Value="44"/>
+                    <Setter Property="FontFamily" Value="Slim Summer"/>
+                </DataTrigger>
+                <DataTrigger Binding ="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="Margin"   Value="5"/>
+                    <Setter Property="FontSize" Value="44"/>
+                    <Setter Property="FontFamily" Value="Taco Salad"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType ="Image" x:Key="xChina">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\china.png"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <ToolTip Content="{Binding Path=Tipo}"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Image" x:Key="xUnitedState">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\united_states.png"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <ToolTip Content="{Binding Path=Tipo}"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType ="Image" x:Key="xMexico">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\mexico.png"/>
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <ToolTip Content="{Binding Path=Tipo}"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType ="Image" x:Key="xGluten">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\gluten.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Gluten}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType ="Image" x:Key="xSoja">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\soybean.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Soja}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType ="Image" x:Key="xSulfitos">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\sulfide.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Sulfitos}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType ="Image" x:Key="xLeche">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\milk.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding ="{Binding Path=Leche}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
     <Border Background="White"  BorderThickness="1" BorderBrush="Black" Margin="18">
+        
         <DockPanel LastChildFill="True" Margin="10,10,10,5">
             
             <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="280">
@@ -28,14 +160,67 @@
                         Margin="10,10,10,0" IsEnabled="False"/>
             </StackPanel>
 
-            <Border BorderBrush="Gray" BorderThickness="1"  Margin="0,0,15,0">
-                <ScrollViewer  VerticalScrollBarVisibility ="Auto"
-                  HorizontalScrollBarVisibility ="Auto">
-                    <WrapPanel>
-                        
-                    </WrapPanel>
-                </ScrollViewer>
-            </Border>
+            <WrapPanel Width="auto" Height="auto">
+                
+                 <Border BorderBrush="Gray" BorderThickness="1"  Margin="0,0,15,0">
+              
+                    
+                        <ListBox ItemsSource="{Binding Path=PlatosSeleccionados}">
+                            
+                            <ListBox.ItemsPanel>
+                                
+                                <ItemsPanelTemplate>
+
+                                    <UniformGrid/>
+
+                                </ItemsPanelTemplate>
+                                
+                            </ListBox.ItemsPanel>
+                            
+                            <ListBox.ItemTemplate>
+                                
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Black" Margin="10" >
+                                        
+                                        <DockPanel LastChildFill="False" Background="White" Width="250" >
+
+                                        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
+                                            <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="200" Height="150" Stretch="Fill" Margin="10"/>
+
+                                            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="30,0,10,0">
+                                                <DockPanel LastChildFill="False" DockPanel.Dock="Left">
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xChina}"/>
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xUnitedState}"/>
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xMexico}"/>
+                                                </DockPanel>
+
+                                                <DockPanel LastChildFill="False"  DockPanel.Dock="Right" Margin="15">
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xGluten}"/>
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xLeche}"/>
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xSulfitos}"/>
+                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xSoja}"/>
+                                                </DockPanel>
+                                            </DockPanel>
+                                                  
+                                        </DockPanel>
+
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="5" Direction="-30" Color="Black" BlurRadius="5" Opacity="1" />
+                                        </Border.Effect>
+                                    </Border>
+                                   
+                                </DataTemplate>
+                                
+                            </ListBox.ItemTemplate>
+                            
+                        </ListBox>
+                     
+                </Border>
+                
+            </WrapPanel>
+            
         </DockPanel>
+        
     </Border>
+    
 </Window>

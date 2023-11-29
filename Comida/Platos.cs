@@ -11,71 +11,87 @@ namespace Comida
 {
     class Plato : INotifyPropertyChanged
     {
+        private string nombre;
+
         public string Nombre 
         {
-            get { return Nombre; }
+            get { return this.nombre; }
 
             set 
             {
-                Nombre = value;
-                NotifyPropertyChanged("Nombre");
+                this.nombre = value;
+                this.NotifyPropertyChanged("Nombre");
             } 
         }
+
+        private string imagen;
         public string Imagen 
         {
-            get { return Imagen; }
+            get { return this.imagen; }
             set 
-            { 
-                Imagen = value;
-                NotifyPropertyChanged("Imagen");
+            {
+                this.imagen = value;
+                this.NotifyPropertyChanged("Imagen");
             } 
         }
+
+
+        private string tipo;
         public string Tipo 
         {
-            get { return Tipo; }
+            get { return this.tipo; }
             set
             {
-                Tipo = value;
-                NotifyPropertyChanged("Tipo");
+                this.tipo = value;
+                this.NotifyPropertyChanged("Tipo");
             }
         }
+
+        private bool gluten;
 
         public bool Gluten 
         {
-            get { return Gluten; }
+            get { return gluten; }
             set
             {
-                Gluten = value;
-                NotifyPropertyChanged("Gluten");
+                this.gluten = value;
+                this.NotifyPropertyChanged("Gluten");
             }
         }
+
+        private bool soja;
 
         public bool Soja 
         {
-            get { return Soja; }
+            get { return this.soja; }
             set
             {
-                Soja = value;
-                NotifyPropertyChanged("Soja");
+                this.soja = value;
+                this.NotifyPropertyChanged("Soja");
             }
         }
 
+        private bool leche;
+
         public bool Leche 
         {
-            get { return Leche; }
+            get { return this.leche; }
             set
             {
-                Leche = value;
-                NotifyPropertyChanged("Leche");
+                this.leche = value;
+                this.NotifyPropertyChanged("Leche");
             }
         }
+
+        private bool sulfitos;
+
         public bool Sulfitos 
         {
-            get { return Sulfitos; }
+            get { return this.sulfitos; }
             set
             {
-                Sulfitos = value;
-                NotifyPropertyChanged("Sulfitos");
+                this.sulfitos = value;
+                this.NotifyPropertyChanged("Sulfitos");
             }
         }
 
@@ -90,29 +106,28 @@ namespace Comida
             Sulfitos = sulfitos;
         }
 
-        public Plato()
-        {
-        }
+        public Plato(){}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void NotifyPropertyChanged(String PropertyName)
+        public void NotifyPropertyChanged(string propertyName)
         {
-            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public static ObservableCollection<Plato> GetSamples(string rutaImagenes)
         {
             ObservableCollection<Plato> lista = new ObservableCollection<Plato>();
 
-            lista.Add(new Plato("Hamburguesa", Path.Combine(rutaImagenes, @"burguer.jpg"), "Americana", true, false, true, true));
-            lista.Add(new Plato("Dumplings", Path.Combine(rutaImagenes, @"dumplings.jpg"), "China", true, true, false, false));
-            lista.Add(new Plato("Tacos", Path.Combine(rutaImagenes, @"tacos.jpg"), "Mexicana", true, false, false, true));
-            lista.Add(new Plato("Cerdo agridulce", Path.Combine(rutaImagenes, @"cerdoagridulce.jpg"), "China", true, true, false, true));
-            lista.Add(new Plato("Hot dogs", Path.Combine(rutaImagenes, @"hotdog.jpg"), "Americana", true, true, true, true));
-            lista.Add(new Plato("Fajitas", Path.Combine(rutaImagenes, @"fajitas.jpg"), "Mexicana", true, false, false, true));
+            ObservableCollection<Plato> observableCollection = new ObservableCollection<Plato>();
+            observableCollection.Add(new Plato("Hamburguesa", Path.Combine(rutaImagenes, @"burguer.jpg"), "Americana", gluten: true, soja: false, leche: true, sulfitos: true));
+            observableCollection.Add(new Plato("Dumplings", Path.Combine(rutaImagenes, @"dumplings.jpg"), "China", gluten: true, soja: true, leche: false, sulfitos: false));
+            observableCollection.Add(new Plato("Tacos", Path.Combine(rutaImagenes, @"tacos.jpg"), "Mexicana", gluten: true, soja: false, leche: false, sulfitos: true));
+            observableCollection.Add(new Plato("Cerdo agridulce", Path.Combine(rutaImagenes, @"cerdoagridulce.jpg"), "China", gluten: true, soja: true, leche: false, sulfitos: true));
+            observableCollection.Add(new Plato("Hot dogs", Path.Combine(rutaImagenes, @"hotdog.jpg"), "Americana", gluten: true, soja: true, leche: true, sulfitos: true));
+            observableCollection.Add(new Plato("Fajitas", Path.Combine(rutaImagenes, @"fajitas.jpg"), "Mexicana", gluten: true, soja: false, leche: false, sulfitos: true));
+            return observableCollection;
 
-            return lista;
         }
     }
 }

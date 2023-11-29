@@ -19,17 +19,18 @@ namespace Comida
     public partial class MainWindow : Window
     {
 
-        private string pathImage = "/Comida/FotosPlatos/";
+        private string pathImage = "C:\\Users\\nero_\\source\\repos\\Comida\\Comida\\Imagenes\\";
 
         private MainWindowVM vm;
 
-        private Plato platos;
 
         public MainWindow()
         {
             InitializeComponent();
 
             vm = new MainWindowVM(Plato.GetSamples(pathImage));
+
+           this.DataContext = vm;
         }
     }
 }

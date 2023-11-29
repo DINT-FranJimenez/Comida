@@ -12,26 +12,43 @@ namespace Comida
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private ObservableCollection<Plato> platos;
+        private ObservableCollection<Plato> platosSelecionados;
 
-        public ObservableCollection<Plato> Platos 
+        private ObservableCollection<string> tiposComida;
+
+
+        public ObservableCollection<Plato> PlatosSeleccionados
         {
-            get { return platos; }
+            get { return platosSelecionados; }
             set 
-            { 
-                Platos  = value;
-                NotifyPropertyChanged("PLatos");
+            {
+                platosSelecionados = value;
+                NotifyPropertyChanged("PlatosSelecionados");
             }
         }
 
-        public void NotifyPropertyChanged(String PropertyName)
+        
+        public ObservableCollection<string> TiposComida
         {
-            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            get
+            {
+                return tiposComida;
+            }
+            set
+            {
+                tiposComida = value;
+                NotifyPropertyChanged("TiposComida");
+            }
+        }
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public MainWindowVM(ObservableCollection<Plato> platos) 
         {
-            this.Platos = platos;
+            this.PlatosSeleccionados = platos;
         }
     }
 }
