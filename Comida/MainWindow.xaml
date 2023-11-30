@@ -86,7 +86,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType ="Image" x:Key="xGluten">
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="30"/>
@@ -110,6 +110,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+
 
         <Style TargetType ="Image" x:Key="xSulfitos">
             <Setter Property="Visibility" Value="Collapsed"/>
@@ -135,92 +137,118 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="IsEnabled" Value="False"/>
+            <EventSetter Event="Checked" Handler="Poner_Checked"/>
+            <EventSetter Event="Unchecked" Handler="Quitar_Unchecked"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Margin" Value="10,0,10,5"/>
+            <Setter Property="ItemsSource">
+                <Setter.Value>
+                    <x:Array Type="{x:Type ComboBoxItem}">
+                        <ComboBoxItem Content="China"/>
+                        <ComboBoxItem Content="Americana"/>
+                        <ComboBoxItem Content="Mexicana"/>
+                    </x:Array>
+                </Setter.Value>
+            </Setter>
+            <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged"/>
+        </Style>
+
     </Window.Resources>
 
     <Border Background="White"  BorderThickness="1" BorderBrush="Black" Margin="18">
-        
+
         <DockPanel LastChildFill="True" Margin="10,10,10,5">
-            
+
             <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="280">
+
                 <TextBlock Text="Nombre del plato" Margin="10,10,0,0"/>
-                <TextBox IsEnabled="False" Margin="10,0,10,0"/>
+                <TextBox x:Name ="xTextName"  IsEnabled="False" Margin="10,0,10,0"/>
+
                 <TextBlock Text="Foto del plato" Margin="10,10,0,0"/>
-                <TextBox IsEnabled="False" Margin="10,0,10,0"/>
+                <TextBox x:Name ="xTextImage" IsEnabled="False" Margin="10,0,10,0"/>
+
                 <TextBlock Text="Tipo del plato" Margin="10,10,0,0"/>
-                <ComboBox IsEnabled="False" Margin="10,0,10,5"/>
-                <GroupBox Header="Alérgenos" BorderBrush="Black" Margin="10,0,10,0">
+                <ComboBox x:Name="xComboBoxTipo"/>
+
+                <GroupBox  Header="Alérgenos" BorderBrush="Black" Margin="10,0,10,0">
                     <UniformGrid>
-                        <CheckBox Content="Leche" Margin="5" IsEnabled="False"/>
-                        <CheckBox Content="Soja" Margin="5" IsEnabled="False"/>
-                        <CheckBox Content="Gluten" Margin="5" IsEnabled="False"/>
-                        <CheckBox Content="Sulfitos" Margin="5" IsEnabled="False"/>
+                        <CheckBox x:Name="xCheckBoxLeche" Content="Leche" />
+                        <CheckBox x:Name="xCheckBoxSoja" Content="Soja" />
+                        <CheckBox x:Name="xCheckBoxGluten" Content="Gluten" />
+                        <CheckBox x:Name="xCheckBoxSulfitos" Content="Sulfitos"/>
                     </UniformGrid>
                 </GroupBox>
-                <Button Content="Limpiar Selección" Width="125" HorizontalAlignment="Left"
-                        Margin="10,10,10,0" IsEnabled="False"/>
+                <Button x:Name="xButtonDeselecciona" Content="Limpiar Selección" Width="125" HorizontalAlignment="Left"
+                        Margin="10,10,10,0" IsEnabled="False" Click="Deseleccionar_Click"/>
             </StackPanel>
 
-            <WrapPanel Width="auto" Height="auto">
-                
-                 <Border BorderBrush="Gray" BorderThickness="1"  Margin="0,0,15,0">
-              
-                    
-                        <ListBox ItemsSource="{Binding Path=PlatosSeleccionados}">
-                            
-                            <ListBox.ItemsPanel>
-                                
-                                <ItemsPanelTemplate>
+            <StackPanel Width="auto" Height="auto" DockPanel.Dock="Left">
 
-                                    <UniformGrid/>
+                <ListBox x:Name="xListBoxPlatos"
+                                 ItemsSource="{Binding Path=PlatosSeleccionados}" 
+                                 ScrollViewer.HorizontalScrollBarVisibility ="Disabled"
+                                 SelectionChanged="listBox_SelectionChanged"
+                                 Margin="5">
 
-                                </ItemsPanelTemplate>
-                                
-                            </ListBox.ItemsPanel>
-                            
-                            <ListBox.ItemTemplate>
-                                
-                                <DataTemplate>
-                                    <Border BorderThickness="1" BorderBrush="Black" Margin="10" >
-                                        
-                                        <DockPanel LastChildFill="False" Background="White" Width="250" >
+                    <ListBox.ItemsPanel>
 
-                                        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
-                                            <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="200" Height="150" Stretch="Fill" Margin="10"/>
+                        <ItemsPanelTemplate>
 
-                                            <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="30,0,10,0">
-                                                <DockPanel LastChildFill="False" DockPanel.Dock="Left">
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xChina}"/>
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xUnitedState}"/>
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xMexico}"/>
-                                                </DockPanel>
+                            <WrapPanel/>
 
-                                                <DockPanel LastChildFill="False"  DockPanel.Dock="Right" Margin="15">
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xGluten}"/>
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xLeche}"/>
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xSulfitos}"/>
-                                                    <Image DockPanel.Dock="Left" Style="{StaticResource xSoja}"/>
-                                                </DockPanel>
-                                            </DockPanel>
-                                                  
+                        </ItemsPanelTemplate>
+
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="Black" Margin="10"  Width="260">
+
+                                <StackPanel Background="White"  >
+
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
+                                    <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="200" Height="180" Stretch="Fill" Margin="5"/>
+
+                                    <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="30,0,10,0">
+                                        <DockPanel LastChildFill="False" DockPanel.Dock="Left">
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xChina}"/>
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xUnitedState}"/>
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xMexico}"/>
                                         </DockPanel>
 
-                                        <Border.Effect>
-                                            <DropShadowEffect ShadowDepth="5" Direction="-30" Color="Black" BlurRadius="5" Opacity="1" />
-                                        </Border.Effect>
-                                    </Border>
-                                   
-                                </DataTemplate>
-                                
-                            </ListBox.ItemTemplate>
-                            
-                        </ListBox>
-                     
-                </Border>
-                
-            </WrapPanel>
-            
+                                        <DockPanel LastChildFill="False"  DockPanel.Dock="Right" Margin="15">
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xGluten}"/>
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xLeche}"/>
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xSulfitos}"/>
+                                            <Image DockPanel.Dock="Left" Style="{StaticResource xSoja}"/>
+                                        </DockPanel>
+                                    </DockPanel>
+
+                                </StackPanel>
+
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="5" Direction="-30" Color="Black" BlurRadius="5" Opacity="1" />
+                                </Border.Effect>
+                            </Border>
+
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+
+            </StackPanel>
+
         </DockPanel>
-        
+
     </Border>
-    
+
 </Window>
