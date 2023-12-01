@@ -14,8 +14,6 @@ namespace Comida
 
         private ObservableCollection<Plato> platosSelecionados;
 
-        private ObservableCollection<string> tiposComida;
-
 
         public ObservableCollection<Plato> PlatosSeleccionados
         {
@@ -24,20 +22,6 @@ namespace Comida
             {
                 platosSelecionados = value;
                 NotifyPropertyChanged("PlatosSelecionados");
-            }
-        }
-
-        
-        public ObservableCollection<string> TiposComida
-        {
-            get
-            {
-                return tiposComida;
-            }
-            set
-            {
-                tiposComida = value;
-                NotifyPropertyChanged("TiposComida");
             }
         }
 

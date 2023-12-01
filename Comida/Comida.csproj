@@ -9,7 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="china.png" />
+    <None Remove="gluten.png" />
+    <None Remove="mexico.png" />
+    <None Remove="milk.png" />
+    <None Remove="soybean.png" />
+    <None Remove="sulfide.png" />
+    <None Remove="united_states.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="fruit_food_apple.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="china.png" />
+    <Resource Include="gluten.png" />
+    <Resource Include="mexico.png" />
+    <Resource Include="milk.png" />
+    <Resource Include="soybean.png" />
+    <Resource Include="sulfide.png" />
+    <Resource Include="united_states.png" />
   </ItemGroup>
 
 </Project>

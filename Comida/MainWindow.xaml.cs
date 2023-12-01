@@ -20,7 +20,7 @@ namespace Comida
     public partial class MainWindow : Window
     {
 
-        private string pathImage = "C:\\Users\\nero_\\source\\repos\\Comida\\Comida\\Imagenes\\";
+        private string pathImage = "C:\\Users\\alumno\\source\\repos\\Comida\\Comida\\Imagenes\\";
 
         private MainWindowVM vm;
         private Plato selectedPlato;

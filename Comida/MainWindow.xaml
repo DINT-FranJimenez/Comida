@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Comida"
         mc:Ignorable="d"
-        Title="Comida" MinHeight="500" Height="700" MinWidth="600" Width="950" Background="LightSkyBlue">
+        Title="Comida" MinHeight="500" Height="700" MinWidth="680" Width="950" Background="LightSkyBlue">
 
     <Window.Resources>
 
@@ -40,7 +40,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\china.png"/>
+            <Setter Property="Source" Value="./china.png"/>
             <Setter Property="ToolTip">
                 <Setter.Value>
                     <ToolTip Content="{Binding Path=Tipo}"/>
@@ -57,7 +57,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\united_states.png"/>
+            <Setter Property="Source" Value="./united_states.png"/>
             <Setter Property="ToolTip">
                 <Setter.Value>
                     <ToolTip Content="{Binding Path=Tipo}"/>
@@ -74,7 +74,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\mexico.png"/>
+            <Setter Property="Source" Value="./mexico.png"/>
             <Setter Property="ToolTip">
                 <Setter.Value>
                     <ToolTip Content="{Binding Path=Tipo}"/>
@@ -91,7 +91,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\gluten.png"/>
+            <Setter Property="Source" Value="./gluten.png"/>
             <Style.Triggers>
                 <DataTrigger Binding ="{Binding Path=Gluten}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -103,7 +103,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\soybean.png"/>
+            <Setter Property="Source" Value="./soybean.png"/>
             <Style.Triggers>
                 <DataTrigger Binding ="{Binding Path=Soja}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -117,7 +117,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\sulfide.png"/>
+            <Setter Property="Source" Value="./sulfide.png"/>
             <Style.Triggers>
                 <DataTrigger Binding ="{Binding Path=Sulfitos}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -129,7 +129,7 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Source" Value="C:\Users\nero_\source\repos\Comida\Comida\milk.png"/>
+            <Setter Property="Source" Value="./milk.png"/>
             <Style.Triggers>
                 <DataTrigger Binding ="{Binding Path=Leche}" Value="True">
                     <Setter Property="Visibility" Value="Visible"/>
@@ -188,7 +188,7 @@
                         Margin="10,10,10,0" IsEnabled="False" Click="Deseleccionar_Click"/>
             </StackPanel>
 
-            <StackPanel Width="auto" Height="auto" DockPanel.Dock="Left">
+            <DockPanel DockPanel.Dock="Left">
 
                 <ListBox x:Name="xListBoxPlatos"
                                  ItemsSource="{Binding Path=PlatosSeleccionados}" 
@@ -209,12 +209,12 @@
                     <ListBox.ItemTemplate>
 
                         <DataTemplate>
-                            <Border BorderThickness="1" BorderBrush="Black" Margin="10"  Width="260">
+                            <Border BorderThickness="1" BorderBrush="Black" Margin="5"  Width="260">
 
-                                <StackPanel Background="White"  >
+                                <StackPanel Background="AliceBlue"  >
 
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
-                                    <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="200" Height="180" Stretch="Fill" Margin="5"/>
+                                    <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="220" Height="190" Stretch="Fill" Margin="5"/>
 
                                     <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="30,0,10,0">
                                         <DockPanel LastChildFill="False" DockPanel.Dock="Left">
@@ -245,7 +245,7 @@
                 </ListBox>
 
 
-            </StackPanel>
+            </DockPanel>
 
         </DockPanel>
 
