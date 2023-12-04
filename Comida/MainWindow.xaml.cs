@@ -50,18 +50,7 @@ namespace Comida
         {
             
             //Deseleccionamos el elemento del lixtbox
-            xListBoxPlatos.SelectedItem = null;
-
-            //Limpio los Text Box
-            xTextName.Text= "";
-            xTextImage.Text= "";
-            xComboBoxTipo.Text = "";
-
-            //Deselecciono botones
-            xCheckBoxLeche.IsChecked = false;
-            xCheckBoxSoja.IsChecked = false;
-            xCheckBoxSulfitos.IsChecked = false;
-            xCheckBoxGluten.IsChecked = false;
+            vm.PlatosSeleccionados = null;
 
             //Deshabilito los elementos
             xTextName.IsEnabled = false;
