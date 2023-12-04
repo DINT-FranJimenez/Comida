@@ -10,9 +10,11 @@ namespace Comida
 {
     internal class MainWindowVM : INotifyPropertyChanged
     {
+        private string pathImage = "/Imagenes/";
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private ObservableCollection<Plato> platosSelecionados;
+        private ObservableCollection<Plato> platosSelecionados ;
 
 
         public ObservableCollection<Plato> PlatosSeleccionados
@@ -25,14 +27,26 @@ namespace Comida
             }
         }
 
+        private Plato plato;
+
+        public Plato Plato 
+        {
+            get { return plato; }
+            set 
+            {
+                plato = value;
+                NotifyPropertyChanged("Plato");
+            }
+        }
+
         public void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public MainWindowVM(ObservableCollection<Plato> platos) 
+        public MainWindowVM() 
         {
-            this.PlatosSeleccionados = platos;
+            this.PlatosSeleccionados = Plato.GetSamples(pathImage);
         }
     }
 }

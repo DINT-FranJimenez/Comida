@@ -14,24 +14,20 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Style.Triggers>
                 <DataTrigger Binding ="{Binding Path=Tipo}" Value="China">
-                    <Setter Property="Margin"   Value="15"/>
-                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Margin" Value="2"/>
                     <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
+                  
                 </DataTrigger>
-                <DataTrigger Binding ="{Binding Path=Nombre}" Value="Dumplings">
-                    <Setter Property="Margin"   Value="8"/>
-                    <Setter Property="FontSize" Value="30"/>
-                    <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
-                </DataTrigger>
+               
                 <DataTrigger Binding ="{Binding Path=Tipo}" Value="Americana">
-                    <Setter Property="Margin"   Value="5"/>
-                    <Setter Property="FontSize" Value="44"/>
+                    <Setter Property="Margin"   Value="2"/>
                     <Setter Property="FontFamily" Value="Slim Summer"/>
+                    <Setter Property="FontSize" Value="28"/>
                 </DataTrigger>
                 <DataTrigger Binding ="{Binding Path=Tipo}" Value="Mexicana">
-                    <Setter Property="Margin"   Value="5"/>
-                    <Setter Property="FontSize" Value="44"/>
+                    <Setter Property="Margin"   Value="2"/>
                     <Setter Property="FontFamily" Value="Taco Salad"/>
+                    <Setter Property="FontSize" Value="32"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -159,6 +155,12 @@
             <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged"/>
         </Style>
 
+        <Style TargetType="TextBox" x:Key="xTextBoxNombre">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Text" Value="{Binding Path=Plato.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Style>
+
     </Window.Resources>
 
     <Border Background="White"  BorderThickness="1" BorderBrush="Black" Margin="18">
@@ -168,7 +170,7 @@
             <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="280">
 
                 <TextBlock Text="Nombre del plato" Margin="10,10,0,0"/>
-                <TextBox x:Name ="xTextName"  IsEnabled="False" Margin="10,0,10,0"/>
+                <TextBox x:Name ="xTextName"  IsEnabled="False" Margin="10,0,10,0" Style="{StaticResource xTextBoxNombre}"/>
 
                 <TextBlock Text="Foto del plato" Margin="10,10,0,0"/>
                 <TextBox x:Name ="xTextImage" IsEnabled="False" Margin="10,0,10,0"/>
@@ -209,21 +211,24 @@
                     <ListBox.ItemTemplate>
 
                         <DataTemplate>
-                            <Border BorderThickness="1" BorderBrush="Black" Margin="5"  Width="260">
+                            <Border BorderThickness="1" BorderBrush="Black" Margin="5"  Width="250">
 
                                 <StackPanel Background="AliceBlue"  >
 
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
-                                    <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="220" Height="190" Stretch="Fill" Margin="5"/>
+                                    <Viewbox Height="60">
+                                        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Nombre}" Style="{StaticResource xFontFamily}"/>
+                                    </Viewbox>
+                                    
+                                    <Image DockPanel.Dock="Top" Source="{Binding Path=Imagen}" Width="220" Height="200" Stretch="Fill" Margin="5"/>
 
-                                    <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="30,0,10,0">
+                                    <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Margin="15,0,10,10">
                                         <DockPanel LastChildFill="False" DockPanel.Dock="Left">
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xChina}"/>
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xUnitedState}"/>
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xMexico}"/>
                                         </DockPanel>
 
-                                        <DockPanel LastChildFill="False"  DockPanel.Dock="Right" Margin="15">
+                                        <DockPanel LastChildFill="False"  DockPanel.Dock="Right" Margin="10,0,10,0">
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xGluten}"/>
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xLeche}"/>
                                             <Image DockPanel.Dock="Left" Style="{StaticResource xSulfitos}"/>

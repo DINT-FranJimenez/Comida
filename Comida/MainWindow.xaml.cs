@@ -20,19 +20,12 @@ namespace Comida
     public partial class MainWindow : Window
     {
 
-        private string pathImage = "C:\\Users\\alumno\\source\\repos\\Comida\\Comida\\Imagenes\\";
-
-        private MainWindowVM vm;
-        private Plato selectedPlato;
-
+        private MainWindowVM vm = new MainWindowVM();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            vm = new MainWindowVM(Plato.GetSamples(pathImage));
-
-           this.DataContext = vm;
+            this.DataContext = vm;
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,29 +41,30 @@ namespace Comida
 
             if (e.AddedItems.Count > 0) {
 
-                // Obtén el elemento seleccionado
-                selectedPlato = (Plato)e.AddedItems[0];
+                // Obtén el elemento seleccionado 
+                vm.Plato = (Plato)e.AddedItems[0];
                 // Asigna el nombre del elemento seleccionado al TextBox
-                xTextName.Text = selectedPlato.Nombre;
-                xTextImage.Text = selectedPlato.Imagen;
-                xComboBoxTipo.Text = selectedPlato.Tipo;
+                xTextName.Text = vm.Plato.Nombre;
+                xTextImage.Text = vm.Plato.Imagen;
+                xComboBoxTipo.Text = vm.Plato.Tipo;
 
-                if (selectedPlato.Leche) xCheckBoxLeche.IsChecked = true;
+                if (vm.Plato.Leche) xCheckBoxLeche.IsChecked = true;
                 else xCheckBoxLeche.IsChecked = false;
 
-                if (selectedPlato.Soja) xCheckBoxSoja.IsChecked = true;
+                if (vm.Plato.Soja) xCheckBoxSoja.IsChecked = true;
                 else xCheckBoxSoja.IsChecked = false;
 
-                if (selectedPlato.Sulfitos) xCheckBoxSulfitos.IsChecked = true;
+                if (vm.Plato.Sulfitos) xCheckBoxSulfitos.IsChecked = true;
                 else xCheckBoxSulfitos.IsChecked = false;
 
-                if (selectedPlato.Gluten) xCheckBoxGluten.IsChecked = true;
+                if (vm.Plato.Gluten) xCheckBoxGluten.IsChecked = true;
                 else xCheckBoxGluten.IsChecked = false;
             }
         }
 
         private void Deseleccionar_Click(object sender, RoutedEventArgs e)
         {
+            
             //Deseleccionamos el elemento del lixtbox
             xListBoxPlatos.SelectedItem = null;
 
@@ -98,6 +92,7 @@ namespace Comida
 
         private void Poner_Checked(object sender, RoutedEventArgs e)
         {
+            
             CheckBox checkBox =  sender as CheckBox;
 
             if (xListBoxPlatos.SelectedItem != null)
@@ -105,16 +100,16 @@ namespace Comida
                 switch (checkBox.Content.ToString())
                 {
                     case "Soja":
-                        selectedPlato.Soja = true;
+                        vm.Plato.Soja = true;
                         break;
                     case "Sulfitos":
-                        selectedPlato.Sulfitos = true;
+                        vm.Plato.Sulfitos = true;
                         break;
                     case "Leche":
-                        selectedPlato.Leche = true;
+                        vm.Plato.Leche = true;
                         break;
                     case "Gluten":
-                        selectedPlato.Gluten = true;
+                        vm.Plato.Gluten = true;
                         break;
                 }
             }
@@ -129,16 +124,16 @@ namespace Comida
                 switch (checkBox.Content.ToString())
                 {
                     case "Soja":
-                        selectedPlato.Soja = false;
+                        vm.Plato.Soja = false;
                         break;
                     case "Sulfitos":
-                        selectedPlato.Sulfitos = false;
+                        vm.Plato.Sulfitos = false;
                         break;
                     case "Leche":
-                        selectedPlato.Leche =false;
+                        vm.Plato.Leche =false;
                         break;
                     case "Gluten":
-                        selectedPlato.Gluten = false;
+                        vm.Plato.Gluten = false;
                         break;
                 }
             }
@@ -153,13 +148,13 @@ namespace Comida
             switch (selectedItemContent)
             {
                 case "Americana":
-                    selectedPlato.Tipo = "Americana";
+                    vm.Plato.Tipo = "Americana";
                     break;
                 case "China":
-                    selectedPlato.Tipo = "China";
+                    vm.Plato.Tipo = "China";
                     break;
                 case "Mexicana":
-                    selectedPlato.Tipo = "Mexicana";
+                    vm.Plato.Tipo = "Mexicana";
                     break;
             }
         }

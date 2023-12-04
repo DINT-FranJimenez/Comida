@@ -11,6 +11,12 @@
   <ItemGroup>
     <None Remove="china.png" />
     <None Remove="gluten.png" />
+    <None Remove="Imagenes\burguer.jpg" />
+    <None Remove="Imagenes\cerdoagridulce.jpg" />
+    <None Remove="Imagenes\dumplings.jpg" />
+    <None Remove="Imagenes\fajitas.jpg" />
+    <None Remove="Imagenes\hotdog.jpg" />
+    <None Remove="Imagenes\tacos.jpg" />
     <None Remove="mexico.png" />
     <None Remove="milk.png" />
     <None Remove="soybean.png" />
@@ -25,6 +31,12 @@
   <ItemGroup>
     <Resource Include="china.png" />
     <Resource Include="gluten.png" />
+    <Resource Include="Imagenes\burguer.jpg" />
+    <Resource Include="Imagenes\cerdoagridulce.jpg" />
+    <Resource Include="Imagenes\dumplings.jpg" />
+    <Resource Include="Imagenes\fajitas.jpg" />
+    <Resource Include="Imagenes\hotdog.jpg" />
+    <Resource Include="Imagenes\tacos.jpg" />
     <Resource Include="mexico.png" />
     <Resource Include="milk.png" />
     <Resource Include="soybean.png" />
