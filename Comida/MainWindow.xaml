@@ -136,8 +136,6 @@
         <Style TargetType="CheckBox">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="IsEnabled" Value="False"/>
-            <EventSetter Event="Checked" Handler="Poner_Checked"/>
-            <EventSetter Event="Unchecked" Handler="Quitar_Unchecked"/>
         </Style>
 
         <Style TargetType="ComboBox">
@@ -152,7 +150,6 @@
                     </x:Array>
                 </Setter.Value>
             </Setter>
-            <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged"/>
         </Style>
 
         <Style TargetType="TextBox" x:Key="xTextBoxNombre">
@@ -173,21 +170,39 @@
                 <TextBox x:Name ="xTextName"  IsEnabled="False" Margin="10,0,10,0" Style="{StaticResource xTextBoxNombre}"/>
 
                 <TextBlock Text="Foto del plato" Margin="10,10,0,0"/>
-                <TextBox x:Name ="xTextImage" IsEnabled="False" Margin="10,0,10,0"/>
+                <TextBox x:Name ="xTextImage" IsEnabled="False" Margin="10,0,10,0" Text="{Binding Path=Plato.Imagen}"/>
 
                 <TextBlock Text="Tipo del plato" Margin="10,10,0,0"/>
-                <ComboBox x:Name="xComboBoxTipo"/>
+                <ComboBox x:Name="xComboBoxTipo" Text="{Binding Path=Plato.Tipo,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <GroupBox  Header="Alérgenos" BorderBrush="Black" Margin="10,0,10,0">
                     <UniformGrid>
-                        <CheckBox x:Name="xCheckBoxLeche" Content="Leche" />
-                        <CheckBox x:Name="xCheckBoxSoja" Content="Soja" />
-                        <CheckBox x:Name="xCheckBoxGluten" Content="Gluten" />
-                        <CheckBox x:Name="xCheckBoxSulfitos" Content="Sulfitos"/>
+                        <CheckBox 
+                                  x:Name="xCheckBoxLeche"
+                                  Content="Leche" 
+                                  IsChecked="{Binding Path=Plato.Leche, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            />
+                        <CheckBox 
+                                  x:Name="xCheckBoxSoja"
+                                  Content="Soja" 
+                                  IsChecked="{Binding Path=Plato.Soja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox 
+                                  x:Name="xCheckBoxGluten"
+                                  Content="Gluten"  
+                                  IsChecked="{Binding Path=Plato.Gluten, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox 
+                                  x:Name="xCheckBoxSulfitos"
+                                  Content="Sulfitos" 
+                                  IsChecked="{Binding Path=Plato.Sulfitos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </UniformGrid>
                 </GroupBox>
-                <Button x:Name="xButtonDeselecciona" Content="Limpiar Selección" Width="125" HorizontalAlignment="Left"
-                        Margin="10,10,10,0" IsEnabled="False" Click="Deseleccionar_Click"/>
+                <Button 
+                        x:Name="xButtonDeselecciona" 
+                        Content="Limpiar Selección" Width="125" 
+                        HorizontalAlignment="Left"
+                        Margin="10,10,10,0" 
+                        IsEnabled="False" 
+                        Click="Deseleccionar_Click"/>
             </StackPanel>
 
             <DockPanel DockPanel.Dock="Left">
