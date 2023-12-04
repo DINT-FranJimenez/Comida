@@ -208,7 +208,8 @@
             <DockPanel DockPanel.Dock="Left">
 
                 <ListBox x:Name="xListBoxPlatos"
-                                 ItemsSource="{Binding Path=PlatosSeleccionados}" 
+                                 ItemsSource="{Binding Path=PlatosSeleccionados}"
+                                 SelectedItem="{Binding Path=Plato}"
                                  ScrollViewer.HorizontalScrollBarVisibility ="Disabled"
                                  SelectionChanged="listBox_SelectionChanged"
                                  Margin="5">

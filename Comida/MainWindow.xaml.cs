@@ -38,19 +38,12 @@ namespace Comida
             xCheckBoxGluten.IsEnabled = true;
             xButtonDeselecciona.IsEnabled = true;
             xComboBoxTipo.IsEnabled = true;
-
-            if (e.AddedItems.Count > 0)
-            {
-                // Obtén el elemento seleccionado 
-                vm.Plato = (Plato)e.AddedItems[0];                  
-            }
         }
 
         private void Deseleccionar_Click(object sender, RoutedEventArgs e)
         {
-            
             //Deseleccionamos el elemento del lixtbox
-            vm.PlatosSeleccionados = null;
+            vm.QuitarPLatosSeleccionado();
 
             //Deshabilito los elementos
             xTextName.IsEnabled = false;
@@ -60,7 +53,6 @@ namespace Comida
             xCheckBoxSulfitos.IsEnabled = false;
             xCheckBoxGluten.IsEnabled = false;
             xComboBoxTipo.IsEnabled = false;
-
         }
 
     }

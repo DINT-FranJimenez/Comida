@@ -44,6 +44,11 @@ namespace Comida
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void QuitarPLatosSeleccionado() 
+        {
+            Plato = null;
+        } 
+
         public MainWindowVM() 
         {
             this.PlatosSeleccionados = Plato.GetSamples(pathImage);
