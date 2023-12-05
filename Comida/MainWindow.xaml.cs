@@ -28,31 +28,9 @@ namespace Comida
             this.DataContext = vm;
         }
 
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            xTextName.IsEnabled = true;
-            xTextImage.IsEnabled = true;
-            xCheckBoxLeche.IsEnabled = true;
-            xCheckBoxSoja.IsEnabled = true;
-            xCheckBoxSulfitos.IsEnabled = true;
-            xCheckBoxGluten.IsEnabled = true;
-            xButtonDeselecciona.IsEnabled = true;
-            xComboBoxTipo.IsEnabled = true;
-        }
-
         private void Deseleccionar_Click(object sender, RoutedEventArgs e)
         {
-            //Deseleccionamos el elemento del lixtbox
             vm.QuitarPLatosSeleccionado();
-
-            //Deshabilito los elementos
-            xTextName.IsEnabled = false;
-            xTextImage.IsEnabled = false;
-            xCheckBoxLeche.IsEnabled = false;
-            xCheckBoxSoja.IsEnabled = false;
-            xCheckBoxSulfitos.IsEnabled = false;
-            xCheckBoxGluten.IsEnabled = false;
-            xComboBoxTipo.IsEnabled = false;
         }
 
     }

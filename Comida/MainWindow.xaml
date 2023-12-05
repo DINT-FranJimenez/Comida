@@ -158,13 +158,23 @@
             <Setter Property="Text" Value="{Binding Path=Plato.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Style>
 
+        <Style  x:Key="xDesactivarPanel" TargetType="{x:Type StackPanel}">
+            <Setter Property="UIElement.IsEnabled" Value="true"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Plato}" Value="{x:Null}">
+                    <Setter Property="UIElement.IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
     <Border Background="White"  BorderThickness="1" BorderBrush="Black" Margin="18">
 
         <DockPanel LastChildFill="True" Margin="10,10,10,5">
 
-            <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="280">
+            <StackPanel DockPanel.Dock="Right" Background="LightGray" Width="280"
+                        Style="{StaticResource xDesactivarPanel}">
 
                 <TextBlock Text="Nombre del plato" Margin="10,10,0,0"/>
                 <TextBox x:Name ="xTextName"  IsEnabled="False" Margin="10,0,10,0" Style="{StaticResource xTextBoxNombre}"/>
@@ -200,8 +210,7 @@
                         x:Name="xButtonDeselecciona" 
                         Content="Limpiar Selección" Width="125" 
                         HorizontalAlignment="Left"
-                        Margin="10,10,10,0" 
-                        IsEnabled="False" 
+                        Margin="10,10,10,0"  
                         Click="Deseleccionar_Click"/>
             </StackPanel>
 
@@ -211,7 +220,6 @@
                                  ItemsSource="{Binding Path=PlatosSeleccionados}"
                                  SelectedItem="{Binding Path=Plato}"
                                  ScrollViewer.HorizontalScrollBarVisibility ="Disabled"
-                                 SelectionChanged="listBox_SelectionChanged"
                                  Margin="5">
 
                     <ListBox.ItemsPanel>
